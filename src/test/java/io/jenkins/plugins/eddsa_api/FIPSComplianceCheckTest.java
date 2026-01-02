@@ -9,7 +9,7 @@ import jenkins.model.Jenkins;
 import org.junit.Rule;
 import org.junit.Test;
 import org.jvnet.hudson.test.RealJenkinsRule;
-import org.jvnet.hudson.test.RealJenkinsRule.JenkinsStartupException;
+import org.jvnet.hudson.test.fixtures.RealJenkinsFixture.JenkinsStartupException;
 
 public class FIPSComplianceCheckTest {
 
