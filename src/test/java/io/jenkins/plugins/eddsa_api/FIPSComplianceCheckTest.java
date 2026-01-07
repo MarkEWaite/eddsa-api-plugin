@@ -5,11 +5,11 @@ import static org.hamcrest.Matchers.containsString;
 import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.fail;
 
+import java.io.IOException;
 import jenkins.model.Jenkins;
 import org.junit.Rule;
 import org.junit.Test;
 import org.jvnet.hudson.test.RealJenkinsRule;
-import org.jvnet.hudson.test.RealJenkinsRule.JenkinsStartupException;
 
 public class FIPSComplianceCheckTest {
 
@@ -27,7 +27,7 @@ public class FIPSComplianceCheckTest {
     @Test
     public void testStartupFips() throws Throwable {
         rjr.javaOptions("-Xmx128M", "-Djenkins.security.FIPS140.COMPLIANCE=true");
-        JenkinsStartupException jse = assertThrows(JenkinsStartupException.class, () -> {
+        IOException jse = assertThrows(IOException.class, () -> {
             rjr.then(r -> {
                 Jenkins.get().getPluginManager().uberClassLoader.loadClass("net.i2p.crypto.eddsa.EdDSAEngine");
                 fail("should not get here!");
